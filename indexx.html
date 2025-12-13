@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abdul Rehman — Portfolio</title>
+  <meta name="description"
+    content="Dark futuristic portfolio of Abdul Rehman — Cybersecurity & Networking student." />
+
+  <style>
+    /* ---------- Root and variables ---------- */
+    :root {
+      --bg: #05060a;
+      --card: #0b0d12;
+      --muted: #9aa4b2;
+      --neon-1: #6ee7ff;
+      /* cyan */
+      --neon-2: #9b5cff;
+      /* purple */
+      --accent: linear-gradient(135deg, var(--neon-1), var(--neon-2));
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-2: rgba(255, 255, 255, 0.02);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --fw-regular: 400;
+      --fw-medium: 600;
+      --fw-bold: 700;
+      --radius: 14px;
+      color-scheme: dark;
+    }
+
+    /* ---------- Base ---------- */
+    n * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(107, 220, 255, 0.03), transparent),
+        radial-gradient(900px 500px at 90% 80%, rgba(155, 92, 255, 0.03), transparent),
+        var(--bg);
+      color: #dce6f2;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px
+    }
+
+    /* ---------- Floating animated background shapes ---------- */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      mix-blend-mode: screen;
+      opacity: 0.6;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.9;
+      transform: translate3d(0, 0, 0)
+    }
+
+    .shape.s1 {
+      width: 420px;
+      height: 420px;
+      left: -80px;
+      top: -80px;
+      background: var(--neon-1);
+      animation: float1 9s ease-in-out infinite
+    }
+
+    .shape.s2 {
+      width: 300px;
+      height: 300px;
+      right: -60px;
+      bottom: -60px;
+      background: var(--neon-2);
+      animation: float2 11s ease-in-out infinite
+    }
+
+    @keyframes float1 {
+      0% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(28px)
+      }
+
+      100% {
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes float2 {
+      0% {
+        transform: translateY(0) scale(1)
+      }
+
+      50% {
+        transform: translateY(-30px) scale(1.05)
+      }
+
+      100% {
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    /* ---------- Navbar ---------- */
+    header {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 60
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 999px
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: var(--accent);
+      box-shadow: 0 8px 30px rgba(107, 220, 255, 0.06), 0 0 18px rgba(155, 92, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #020617;
+      font-size: 18px
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all .25s
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(110, 231, 255, 0.06)
+    }
+
+    .cta {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    }
+
+    /* Hamburger for small screens */
+    .hamburger {
+      display: none
+    }
+
+    @media (max-width:880px) {
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: block;
+        background: transparent;
+        border: 0;
+        color: var(--muted);
+        font-size: 20px;
+        padding: 8px
+      }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 110px 14px 60px;
+      position: relative;
+      z-index: 10
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 32px;
+      align-items: center
+    }
+
+    .hero-left h1 {
+      font-size: 36px;
+      margin: 0 0 8px;
+      letter-spacing: -0.5px
+    }
+
+    .hero-left .tag {
+      color: var(--muted);
+      margin-bottom: 16px
+    }
+
+    .typing {
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--neon-1), var(--neon-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--glass-border);
+      padding: 22px;
+      border-radius: 16px;
+      backdrop-filter: blur(6px)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px
+    }
+
+    .stat {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.012), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      min-width: 110px
+    }
+
+    .avatar {
+      width: 100%;
+      height: 420px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.03)
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 80px 14px;
+      position: relative;
+      z-index: 6
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 20px
+    }
+
+    .section-title .dec {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+      flex: 1
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      gap: 18px
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    @media (max-width:880px) {
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .grid.cols-3 {
+        grid-template-columns: 1fr
+      }
+
+      .grid.cols-2 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 18px;
+      border-radius: 12px
+    }
+
+    .glow-border {
+      position: relative
+    }
+
+    .glow-border:after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 12px;
+      padding: 1px;
+      background: var(--accent);
+      filter: blur(12px);
+      opacity: 0.08;
+      pointer-events: none
+    }
+
+    /* Skill badges */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .badge {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-weight: 600;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01));
+    }
+
+    /* Timeline / Achievements */
+    .timeline {
+      border-left: 2px dashed rgba(255, 255, 255, 0.03);
+      padding-left: 16px
+    }
+
+    .tl-item {
+      margin-bottom: 18px;
+      padding-left: 12px
+    }
+
+    .tl-item small {
+      color: var(--muted)
+    }
+
+    /* Projects */
+    .proj {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .proj .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .proj .tech {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .proj .links {
+      display: flex;
+      gap: 10px
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-weight: 600
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 22px
+    }
+
+    @media (max-width:880px) {
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: inherit
+    }
+
+    .contact-form textarea {
+      min-height: 120px
+    }
+
+    /* Footer */
+    footer {
+      padding: 26px 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* ---------- small UI niceties ---------- */
+    .muted {
+      color: var(--muted)
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .mb-12 {
+      margin-bottom: 12px
+    }
+
+    /* ---------- Reveal animations (JS driven) ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.2, .9, .3, 1)
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    /* Active nav */
+    .nav-links a.active {
+      color: var(--neon-1);
+      box-shadow: 0 8px 30px rgba(107, 220, 255, 0.04)
+    }
+
+    .cert-item {
+  transition: all 0.35s ease;
+}
+
+.cert-item.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  display: none;
+}
+
+.cert-filter.active {
+  background: linear-gradient(135deg,#6ee7ff,#9b5cff);
+  color: #020617;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating neon shapes -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header>
+    <nav class="nav container" role="navigation">
+      <div class="brand">
+        <div class="logo">AR</div>
+        <div>
+          <div style="font-weight:700">Abdul Rehman</div>
+          <div style="font-size:12px;color:var(--muted)">Cybersecurity • Pentesting • Networking</div>
+        </div>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <!--a href="#achievements">Achievements</a -->
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="cta">Contact</a>
+      </div>
+
+      <button class="hamburger" id="hamb">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left reveal">
+          <div class="tag muted">Hello, I'm</div>
+          <h1>Abdul Rehman — <span class="typing" id="typed">Cybersecurity Enthusiast</span></h1>
+          <p class="muted mb-12">I love exploring networks, breaking systems ethically, and learning how things work
+            under the hood. I study pentesting, bug bounty hunting and network security.</p>
+
+          <div class="hero-card glow-border">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:14px;color:var(--muted)">Current Focus</div>
+                <div style="font-weight:700;margin-top:6px">Bug Bounty & Penetration Testing</div>
+              </div>
+              <div style="text-align:right">
+                <div style="color:var(--muted);font-size:12px">University</div>
+                <div style="font-weight:700">HITMS — Computer Science</div>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <div style="font-size:12px;color:var(--muted)">Experience</div>
+                <div style="font-weight:700">Student • Learner</div>
+              </div>
+              <div class="stat">
+                <div style="font-size:12px;color:var(--muted)">Tools</div>
+                <div style="font-weight:700">Kali, Wireshark, Burp</div>
+              </div>
+              <div class="stat">
+                <div style="font-size:12px;color:var(--muted)">Goals</div>
+                <div style="font-weight:700">Bug Bounty • SecRole</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:12px">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn" href="#contact">Hire / Contact</a>
+          </div>
+        </div>
+
+        <aside class="reveal">
+          <div class="avatar">
+            <img src="assets/images/profile.jpg" alt="Abdul Rehman Profile" style="
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:12px;
+    " />
+          </div>
+
+         <!-- <div style="margin-top:18px" class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:12px;color:var(--muted)">Contact</div>
+                <div style="font-weight:700">abdul.rehman24.134@gmail.com</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:12px;color:var(--muted)">Location</div>
+                <div style="font-weight:700">Hyderabad, Pakistan</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <a class="btn" href="#certifications">Certs</a>
+              <a class="btn" href="#achievements">Awards</a>
+            </div>
+          </div> -->
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="card reveal">
+          <p class="muted">I am a dedicated cybersecurity professional with expertise in <b>C++</b> and <b>Java</b>, leveraging tools like <b>Kali Linux, Burp Suite, Wireshark, Nmap </b>, and <b>Metasploit</b> to analyze vulnerabilities and secure systems. <br>
+                          My approach combines strong technical skills with essential soft skills, including effective <strong>Problem Solving</strong>, excellent <strong>Teamwork</strong>, clear <strong>Communication</strong>, and a relentless <strong>Curiosity</strong> for learning and adapting to new security challenges.</p>
+
+          <div style="display:flex;gap:18px;margin-top:14px;flex-wrap:wrap">
+            <div class="card" style="min-width:200px;flex:1">
+              <div style="font-size:13px;color:var(--muted)">Interests</div>
+              <div style="font-weight:700;margin-top:6px">Penetration Testing, Bug Bounty, Network Security</div>
+            </div>
+            <div class="card" style="min-width:200px;flex:1">
+              <div style="font-size:13px;color:var(--muted)">Learning</div>
+              <div style="font-weight:700;margin-top:6px">Kali Linux, Wireshark, Burp Suite, Metasploit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <h2>Skills</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="card reveal">
+            <h3>Technical Skills</h3>
+            <div class="badges" style="margin-top:12px">
+              <div class="badge">C++</div>
+              <div class="badge">Java</div>
+              <div class="badge">Networking</div>
+              <div class="badge">Kali Linux</div>
+              <div class="badge">Burp Suite</div>
+              <div class="badge">Wireshark</div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Security Tools</h3>
+            <div class="badges" style="margin-top:12px">
+              <div class="badge">Nmap</div>
+              <div class="badge">Metasploit</div>
+              <div class="badge">OWASP ZAP</div>
+              <div class="badge">SQLmap</div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Soft Skills</h3>
+            <div class="badges" style="margin-top:12px">
+              <div class="badge">Problem Solving</div>
+              <div class="badge">Teamwork</div>
+              <div class="badge">Communication</div>
+              <div class="badge">Curiosity</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Achievements -->
+     <!--
+    <section id="achievements">
+      <div class="container">
+        <div class="section-title">
+          <h2>Achievements</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="card reveal timeline">
+          <div class="card reveal">
+            <a href="assets/images/achievement-ctf.png" target="_blank">
+              <img src="assets/images/achievement-ctf.png" alt="CTF Achievement" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <div style="font-weight:700">Top 10 – University CTF</div>
+            <small class="muted">2025 • Cybersecurity Competition</small>
+          </div>
+
+
+          <div class="card reveal">
+            <a href="assets/images/achievement-ctf.png" target="_blank">
+              <img src="assets/images/achievement-ctf.png" alt="CTF Achievement" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <div style="font-weight:700">Top 10 – University CTF</div>
+            <small class="muted">2025 • Cybersecurity Competition</small>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+-->
+    <!-- Certifications -->
+    <section id="certifications">
+      <!-- Certificate Filters -->
+<div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+  <button class="btn cert-filter active" data-filter="all">All</button>
+  <!--button class="btn cert-filter" data-filter="networking">Networking</button>
+  <button class="btn cert-filter" data-filter="security">Security</button -->
+  <button class="btn cert-filter" data-filter="hitms">Hitms</button>
+   <button class="btn cert-filter" data-filter="other">Other</button>
+</div>
+
+      <div class="container">
+        <div class="section-title">
+          <h2>Certifications</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="grid cols-2">
+          
+          <!--
+          <div class="card reveal cert-item" data-category="networking">
+            <a href="assets/images/cert-cisco.jpg" target="_blank">
+              <img src="assets/images/cert-cisco.jpg" alt="Cisco Networking Certificate" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <h3>Cisco Networking Basics</h3>
+            <div class="muted">Cisco • 2024</div>
+          </div>
+
+
+          <div class="card reveal  cert-item" data-category="security">
+            <a href="assets/images/cert-cisco.jpg" target="_blank">
+              <img src="assets/images/cert-cisco.jpg" alt="Cisco Networking Certificate" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <h3>Cisco Networking Basics</h3>
+            <div class="muted">Cisco • 2024</div>
+          </div> -->
+ <div class="card reveal  cert-item" data-category="other">
+            <a href="assets/images/cert-climact.jpg" target="_blank">
+              <img src="assets/images/cert-climact.jpg" alt="Gen C ClimAct Program Certificate" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <h3>Gen C ClimAct Program Fellowship</h3>
+            <div class="muted">Climatology & PMGYM • August 17-30, 2025</div>
+          </div>
+
+          <div class="card reveal  cert-item" data-category="other">
+            <a href="assets/images/cert-genii.png" target="_blank">
+              <img src="assets/images/cert-genii.png" alt="GEN_II Participation Certificate" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <h3>Guest Lecture on Integrated HSE</h3>
+            <div class="muted">GEN_II • October 8, 2025</div>
+          </div>
+          <div class="card reveal cert-item" data-category="hitms">
+            <a href="assets/images/cert-techgenesis.png" target="_blank">
+              <img src="assets/images/cert-techgenesis.png" alt="Tech Genesis SET'25 Certificate" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <h3>Tech Genesis: Digital Pakistan Vision 2047</h3>
+            <div class="muted">HITMS • February 24, 2025</div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Projects</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="card reveal proj">
+            <a href="https://github.com/itskazmizone" target="_blank">
+              <img src="assets/images/project-bank.png" alt="Bank Management System" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <div class="meta">
+              <div>
+                <div style="font-weight:700">Bank Management System</div>
+                <div class="tech">C++</div>
+              </div>
+              <div class="links">
+                <a class="btn" href="https://github.com/itskazmizone" target="_blank">Code</a>
+              </div>
+            </div>
+
+            <p class="muted">
+             C++ based ATM simulator with secure PIN login, deposit, withdraw, and transfer options. Features: 4-digit PIN validation, PIN reset, secure transactions.</p>
+          </div>
+
+
+          <!--
+          <div class="card reveal proj">
+            <a href="https://github.com/yourusername/bank-management" target="_blank">
+              <img src="assets/images/project-bank.png" alt="Bank Management System" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <div class="meta">
+              <div>
+                <div style="font-weight:700">Bank Management System</div>
+                <div class="tech">C++ • OOP</div>
+              </div>
+              <div class="links">
+                <a class="btn" href="https://github.com/yourusername/bank-management" target="_blank">Code</a>
+              </div>
+            </div>
+
+            <p class="muted">
+              Console-based banking system with account creation, deposit, withdraw and record handling.
+            </p>
+          </div>
+
+
+          <div class="card reveal proj">
+            <a href="https://github.com/yourusername/bank-management" target="_blank">
+              <img src="assets/images/project-bank.png" alt="Bank Management System" style="
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+        transition:transform .3s;
+      " onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+            </a>
+
+            <div class="meta">
+              <div>
+                <div style="font-weight:700">Bank Management System</div>
+                <div class="tech">C++ • OOP</div>
+              </div>
+              <div class="links">
+                <a class="btn" href="https://github.com/yourusername/bank-management" target="_blank">Code</a>
+              </div>
+            </div>
+
+            <p class="muted">
+              Console-based banking system with account creation, deposit, withdraw and record handling.
+            </p>
+          </div>
+          -->
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <div class="dec"></div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card reveal contact-form">
+  <h3 style="margin-bottom:14px">📤 Send Message</h3>
+
+  <form action="https://formsubmit.co/.abdulrehman24.134@gmail.com" method="POST">
+
+    <!-- Name -->
+    <input 
+      type="text" 
+      name="name" 
+      placeholder="Your Name" 
+      required
+    />
+
+    <!-- Email -->
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Your Email" 
+      required
+    />
+
+    <!-- Message -->
+    <textarea 
+      name="message" 
+      placeholder="Your Message" 
+      required
+    ></textarea>
+
+    <!-- FormSubmit Settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="📩 New Portfolio Message">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="thank-you.html">
+
+    <!-- Submit -->
+    <button class="btn" type="submit">Send Message</button>
+
+  </form>
+</div>
+
+
+          <div class="card reveal">
+            <h3>Contact Details</h3>
+            <div style="margin-top:8px;color:var(--muted)">Email</div>
+            <div style="font-weight:700">abdulrehman24.134@gmail.com</div>
+
+            <div style="margin-top:12px;color:var(--muted)">Social</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <a class="btn" href="#">GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/abdul-rehman-76389528b/">LinkedIn</a>
+              <a class="btn" href="#">Instagram</a>
+            </div>
+
+            <div style="margin-top:12px;color:var(--muted)">Location</div>
+            <div style="font-weight:700">Hyderabad, Pakistan</div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="center">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© <strong>Abdul Rehman</strong> — Cybersecurity Student-- </div>
+      <div class="muted"> Built by • Syed Kaim Ali</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple typing loop
+    const typedEl = document.getElementById('typed');
+    const words = ["Cybersecurity Enthusiast", "Bug Bounty Hunter", "Penetration Tester", "Network Explorer"];
+    let i = 0, j = 0, forward = true;
+    function typeLoop() {
+      const cur = words[i];
+      if (forward) {
+        typedEl.textContent = cur.slice(0, j + 1);
+        j++;
+        if (j === cur.length) { forward = false; setTimeout(typeLoop, 900); return }
+      } else {
+        typedEl.textContent = cur.slice(0, j - 1);
+        j--;
+        if (j === 0) { forward = true; i = (i + 1) % words.length }
+      }
+      setTimeout(typeLoop, 80);
+    }
+    setTimeout(typeLoop, 400);
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible') } })
+    }, { threshold: 0.12 });
+    reveals.forEach(r => obs.observe(r));
+
+    // Mobile nav toggle
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    hamb.addEventListener('click', () => {
+      if (navLinks.style.display === 'flex') navLinks.style.display = ''; else navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column'; navLinks.style.gap = '8px'; navLinks.style.padding = '10px'; navLinks.style.background = 'rgba(255,255,255,0.02)'; navLinks.style.borderRadius = '12px';
+    });
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('main section');
+    const navA = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navA.forEach(a => a.classList.remove('active'));
+          const id = entry.target.id;
+          const link = document.querySelector('.nav-links a[href="#' + id + '"]');
+          if (link) link.classList.add('active');
+        }
+      })
+    }, { threshold: 0.45 });
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // Keyboard accessibility: allow Enter on nav links when collapsed
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('keydown', (e) => { if (e.key === 'Enter') a.click() }));
+  
+    
+  </script>
+  <script>
+  const filterBtns = document.querySelectorAll(".cert-filter");
+  const certItems = document.querySelectorAll(".cert-item");
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // active button
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+
+      certItems.forEach(item => {
+        if (filter === "all" || item.dataset.category === filter) {
+          item.classList.remove("hide");
+        } else {
+          item.classList.add("hide");
+        }
+      });
+    });
+  });
+</script>
+</body>
+
+</html>
